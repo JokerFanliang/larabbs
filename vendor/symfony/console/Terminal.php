@@ -96,7 +96,7 @@ class Terminal
     /**
      * Returns whether STDOUT has vt100 support (some Windows 10+ configurations).
      */
-    private static function hasVt100Support()
+    private static function hasVt100Support(): bool
     {
         return \function_exists('sapi_windows_vt100_support') && sapi_windows_vt100_support(fopen('php://stdout', 'w'));
     }
