@@ -40,13 +40,13 @@ class PhpFileLoader extends FileLoader
 
         // the closure forbids access to the private scope in the included file
         $loader = $this;
-        $load = \Closure::bind(function ($file) use ($loader) {
+        $load = \Closure::bind(static function ($file) use ($loader) {
             return include $file;
         }, null, ProtectedPhpFileLoader::class);
 
         $result = $load($path);
 
-        if (\is_object($result) && \is_callable($result)) {
+        if ($result instanceof \Closure) {
             $collection = new RouteCollection();
             $result(new RoutingConfigurator($collection, $this, $path, $file));
         } else {

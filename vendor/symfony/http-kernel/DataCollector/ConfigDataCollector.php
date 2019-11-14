@@ -30,15 +30,12 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
     private $version;
     private $hasVarDumper;
 
-    public function __construct(string $name = null, string $version = null)
+    /**
+     * @param string $name    The name of the application using the web profiler
+     * @param string $version The version of the application using the web profiler
+     */
+    public function __construct($name = null, $version = null)
     {
-        if (1 <= \func_num_args()) {
-            @trigger_error(sprintf('The "$name" argument in method "%s()" is deprecated since Symfony 4.2.', __METHOD__), E_USER_DEPRECATED);
-        }
-        if (2 <= \func_num_args()) {
-            @trigger_error(sprintf('The "$version" argument in method "%s()" is deprecated since Symfony 4.2.', __METHOD__), E_USER_DEPRECATED);
-        }
-
         $this->name = $name;
         $this->version = $version;
         $this->hasVarDumper = class_exists(LinkStub::class);
@@ -63,6 +60,7 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
             'token' => $response->headers->get('X-Debug-Token'),
             'symfony_version' => Kernel::VERSION,
             'symfony_state' => 'unknown',
+            'name' => isset($this->kernel) ? $this->kernel->getName() : 'n/a',
             'env' => isset($this->kernel) ? $this->kernel->getEnvironment() : 'n/a',
             'debug' => isset($this->kernel) ? $this->kernel->isDebug() : 'n/a',
             'php_version' => PHP_VERSION,
@@ -83,8 +81,8 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
 
             $this->data['symfony_state'] = $this->determineSymfonyState();
             $this->data['symfony_minor_version'] = sprintf('%s.%s', Kernel::MAJOR_VERSION, Kernel::MINOR_VERSION);
-            $eom = \DateTime::createFromFormat('m/Y', Kernel::END_OF_MAINTENANCE);
-            $eol = \DateTime::createFromFormat('m/Y', Kernel::END_OF_LIFE);
+            $eom = \DateTime::createFromFormat('d/m/Y', '01/'.Kernel::END_OF_MAINTENANCE);
+            $eol = \DateTime::createFromFormat('d/m/Y', '01/'.Kernel::END_OF_LIFE);
             $this->data['symfony_eom'] = $eom->format('F Y');
             $this->data['symfony_eol'] = $eol->format('F Y');
         }
@@ -108,30 +106,20 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
         $this->data = $this->cloneVar($this->data);
     }
 
-    /**
-     * @deprecated since Symfony 4.2
-     */
     public function getApplicationName()
     {
-        @trigger_error(sprintf('The method "%s()" is deprecated since Symfony 4.2.', __METHOD__), E_USER_DEPRECATED);
-
         return $this->data['app_name'];
     }
 
-    /**
-     * @deprecated since Symfony 4.2
-     */
     public function getApplicationVersion()
     {
-        @trigger_error(sprintf('The method "%s()" is deprecated since Symfony 4.2.', __METHOD__), E_USER_DEPRECATED);
-
         return $this->data['app_version'];
     }
 
     /**
      * Gets the token.
      *
-     * @return string The token
+     * @return string|null The token
      */
     public function getToken()
     {
@@ -239,14 +227,10 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
      * Gets the application name.
      *
      * @return string The application name
-     *
-     * @deprecated since Symfony 4.2
      */
     public function getAppName()
     {
-        @trigger_error(sprintf('The "%s()" method is deprecated since Symfony 4.2.', __METHOD__), E_USER_DEPRECATED);
-
-        return 'n/a';
+        return $this->data['name'];
     }
 
     /**
@@ -330,8 +314,8 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
     private function determineSymfonyState()
     {
         $now = new \DateTime();
-        $eom = \DateTime::createFromFormat('m/Y', Kernel::END_OF_MAINTENANCE)->modify('last day of this month');
-        $eol = \DateTime::createFromFormat('m/Y', Kernel::END_OF_LIFE)->modify('last day of this month');
+        $eom = \DateTime::createFromFormat('d/m/Y', '01/'.Kernel::END_OF_MAINTENANCE)->modify('last day of this month');
+        $eol = \DateTime::createFromFormat('d/m/Y', '01/'.Kernel::END_OF_LIFE)->modify('last day of this month');
 
         if ($now > $eol) {
             $versionState = 'eol';

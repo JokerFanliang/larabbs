@@ -34,7 +34,7 @@ class Question
      * @param string $question The question to ask to the user
      * @param mixed  $default  The default answer to return if the user enters nothing
      */
-    public function __construct(string $question, $default = null)
+    public function __construct($question, $default = null)
     {
         $this->question = $question;
         $this->default = $default;
@@ -141,7 +141,7 @@ class Question
         }
 
         if (null !== $values && !\is_array($values) && !$values instanceof \Traversable) {
-            throw new InvalidArgumentException('Autocompleter values can be either an array, "null" or a "Traversable" object.');
+            throw new InvalidArgumentException('Autocompleter values can be either an array, `null` or a `Traversable` object.');
         }
 
         if ($this->hidden) {
@@ -155,8 +155,6 @@ class Question
 
     /**
      * Sets a validator for the question.
-     *
-     * @param callable|null $validator
      *
      * @return $this
      */
@@ -216,8 +214,6 @@ class Question
      *
      * The normalizer can be a callable (a string), a closure or a class implementing __invoke.
      *
-     * @param callable $normalizer
-     *
      * @return $this
      */
     public function setNormalizer(callable $normalizer)
@@ -232,7 +228,7 @@ class Question
      *
      * The normalizer can ba a callable (a string), a closure or a class implementing __invoke.
      *
-     * @return callable
+     * @return callable|null
      */
     public function getNormalizer()
     {
