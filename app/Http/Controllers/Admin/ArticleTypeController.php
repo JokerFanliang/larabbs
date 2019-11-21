@@ -3,30 +3,32 @@
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BackController;
+use App\Models\ArticleType;
 
-/**
- * 后台控制台常规控制器
- *
- * @author raoyc <raoyc2009@gmail.com>
- */
+
 class ArticleTypeController extends BackController
 {
 
-    /**
-     * 后台文章类别
-     *
-     * @return Response
-     */
+    protected $type;
+
+    public function __construct(ArticleType $type)
+    {
+        $this->type = $type;
+    }
+
+    //列表
     public function index(Request $request)
     {	
         return view('admin.article_type.index');
     }
 
+    //新增
     public function add(Request $request)
     { 
         return view('admin.article_type.add');
     }
 
+    //修改
     public function edit(Request $request)
     { 
         return view('admin.article_type.edit');
