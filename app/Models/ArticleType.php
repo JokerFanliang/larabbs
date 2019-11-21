@@ -28,7 +28,7 @@ class ArticleType extends Model
     	return true;
     }
 
-    //修改3
+    //修改4
     public function add($request){
     	$type=new ArticleType();
     	$type->name=$request->name;
