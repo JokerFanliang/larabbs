@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*********************后台***********************/
+
 Route::get('admin/article_type','Admin\ArticleTypeController@index');
 
 //后台首页
@@ -29,3 +31,8 @@ Route::get('admin/article_type/edit','Admin\ArticleTypeController@edit');
 Route::get('admin/article/index','Admin\ArticleController@index');
 Route::get('admin/article/add','Admin\ArticleController@add');
 Route::get('admin/article/edit','Admin\ArticleController@edit');
+
+
+/*********************前台***********************/
+
+Route::get('/','Index\IndexController@index');
