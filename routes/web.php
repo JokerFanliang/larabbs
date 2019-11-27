@@ -36,3 +36,4 @@ Route::get('admin/article/edit','Admin\ArticleController@edit');
 /*********************前台***********************/
 
 Route::get('/','Index\IndexController@index');
+Route::get('index/index/detail','Index\IndexController@detail');

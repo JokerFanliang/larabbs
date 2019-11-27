@@ -14,5 +14,8 @@ class IndexController extends BaseController
         return view('index.index.index');
     }
 
-
+    public function detail(Request $request)
+    {	
+        return view('index.index.detail');
+    }
 }
