@@ -11,7 +11,7 @@ class IndexController extends BaseController
 
     public function index(Request $request)
     {
-    	echo $_SERVER['SERVER_ADDR'];
+    	echo $_SERVER['SERVER_ADDR'].PHP_VERSION;
         return view('index.index.index');
     }
 
