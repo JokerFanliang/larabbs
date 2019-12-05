@@ -25,8 +25,9 @@ future mode, set the `future` flag in the client options to `'lazy'`:
 $client = ClientBuilder::create()->build();
 
 $params = [
-    'index'  => 'test',
-    'id'     => 1,
+    'index' => 'test',
+    'type' => 'test',
+    'id' => 1,
     'client' => [
         'future' => 'lazy'
     ]
@@ -52,8 +53,9 @@ act like a simple associative array.  For example:
 $client = ClientBuilder::create()->build();
 
 $params = [
-    'index'  => 'test',
-    'id'     => 1,
+    'index' => 'test',
+    'type' => 'test',
+    'id' => 1,
     'client' => [
         'future' => 'lazy'
     ]
@@ -74,8 +76,9 @@ $futures = [];
 
 for ($i = 0; $i < 1000; $i++) {
     $params = [
-        'index'  => 'test',
-        'id'     => $i,
+        'index' => 'test',
+        'type' => 'test',
+        'id' => $i,
         'client' => [
             'future' => 'lazy'
         ]
@@ -104,8 +107,9 @@ $futures = [];
 
 for ($i = 0; $i < 1000; $i++) {
     $params = [
-        'index'  => 'test',
-        'id'     => $i,
+        'index' => 'test',
+        'type' => 'test',
+        'id' => $i,
         'client' => [
             'future' => 'lazy'
         ]
@@ -158,8 +162,9 @@ $futures = [];
 
 for ($i = 0; $i < 499; $i++) {
     $params = [
-        'index'  => 'test',
-        'id'     => $i,
+        'index' => 'test',
+        'type' => 'test',
+        'id' => $i,
         'client' => [
             'future' => 'lazy'
         ]
@@ -183,8 +188,9 @@ $client = ClientBuilder::create()->build();
 $futures = [];
 
 $params = [
-    'index'  => 'test',
-    'id'     => 1,
+    'index' => 'test',
+    'type' => 'test',
+    'id' => 1,
     'client' => [
         'future' => 'lazy'
     ]
@@ -194,8 +200,9 @@ $futures['getRequest'] = $client->get($params);     // First request
 
 $params = [
     'index' => 'test',
-    'id'    => 2,
-    'body'  => [
+    'type' => 'test',
+    'id' => 2,
+    'body' => [
         'field' => 'value'
     ],
     'client' => [
@@ -207,7 +214,8 @@ $futures['indexRequest'] = $client->index($params);       // Second request
 
 $params = [
     'index' => 'test',
-    'body'  => [
+    'type' => 'test',
+    'body' => [
         'query' => [
             'match' => [
                 'field' => 'value'

@@ -58,6 +58,7 @@ return array(
     'Maatwebsite\\Excel\\' => array($vendorDir . '/maatwebsite/excel/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Laravel\\Tinker\\' => array($vendorDir . '/laravel/tinker/src'),
+    'Laravel\\Scout\\' => array($vendorDir . '/laravel/scout/src'),
     'JakubOnderka\\PhpConsoleHighlighter\\' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
     'JakubOnderka\\PhpConsoleColor\\' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
     'Jaeger\\' => array($vendorDir . '/jaeger/g-http/src'),
@@ -83,5 +84,6 @@ return array(
     'Cache\\Adapter\\Filesystem\\' => array($vendorDir . '/cache/filesystem-adapter'),
     'Cache\\Adapter\\Common\\' => array($vendorDir . '/cache/adapter-common'),
     'BeyondCode\\DumpServer\\' => array($vendorDir . '/beyondcode/laravel-dump-server/src'),
+    'Baijunyao\\LaravelScoutElasticsearch\\' => array($vendorDir . '/baijunyao/laravel-scout-elasticsearch/src'),
     'App\\' => array($baseDir . '/app'),
 );

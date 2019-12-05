@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Index;
 use Illuminate\Http\Request;
+use App\Models\ArticleType;
+use App\Models\Article;
+use Elasticsearch\ClientBuilder;
 use App\Http\Controllers\Index\BaseController;
 
 
@@ -11,7 +14,9 @@ class IndexController extends BaseController
 
     public function index(Request $request)
     {
-    	echo $_SERVER['SERVER_ADDR'].PHP_VERSION;
+    	$articles=Article::get();
+
+
         return view('index.index.index');
     }
 
