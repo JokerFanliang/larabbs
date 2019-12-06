@@ -18,12 +18,13 @@ class Article extends Model
     }
 
     public function searchableAs(){
-    	return "_doc";
+    	return "articles";
     }
 
     public function toSearchableArray(){
     	return [
-    		'title'=> $this->title,
+    		'title'=>$this->title,
+    		'user_id'=> $this->user_id,
     		'content'=>$this->content,
     	];
     }
