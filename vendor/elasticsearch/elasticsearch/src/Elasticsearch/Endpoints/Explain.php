@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints;
 
 use Elasticsearch\Common\Exceptions;
@@ -86,10 +84,8 @@ class Explain extends AbstractEndpoint
             'routing',
             'source',
             '_source',
-            '_source_include',
-            '_source_includes',
             '_source_exclude',
-            '_source_excludes',
+            '_source_include',
             'stored_fields'
         );
     }

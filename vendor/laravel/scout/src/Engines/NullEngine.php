@@ -2,9 +2,8 @@
 
 namespace Laravel\Scout\Engines;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Collection as BaseCollection;
 use Laravel\Scout\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class NullEngine extends Engine
 {
@@ -62,7 +61,7 @@ class NullEngine extends Engine
      */
     public function mapIds($results)
     {
-        return BaseCollection::make();
+        return Collection::make();
     }
 
     /**
@@ -87,16 +86,5 @@ class NullEngine extends Engine
     public function getTotalCount($results)
     {
         return count($results);
-    }
-
-    /**
-     * Flush all of the model's records from the engine.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return void
-     */
-    public function flush($model)
-    {
-        //
     }
 }

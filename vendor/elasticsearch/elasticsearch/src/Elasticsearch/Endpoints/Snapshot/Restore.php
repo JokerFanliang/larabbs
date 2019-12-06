@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Snapshot;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -18,23 +16,16 @@ use Elasticsearch\Common\Exceptions;
  */
 class Restore extends AbstractEndpoint
 {
-    /**
-     * A repository name
-     *
-     * @var string
-     */
+    // A repository name
     private $repository;
 
-    /**
-     * A snapshot name
-     *
-     * @var string
-     */
+    // A snapshot name
     private $snapshot;
 
     /**
      * @param array $body
      *
+     * @throws \Elasticsearch\Common\Exceptions\InvalidArgumentException
      * @return $this
      */
     public function setBody($body)
@@ -49,7 +40,7 @@ class Restore extends AbstractEndpoint
     }
 
     /**
-     * @param string $repository
+     * @param $repository
      *
      * @return $this
      */
@@ -65,7 +56,7 @@ class Restore extends AbstractEndpoint
     }
 
     /**
-     * @param string $snapshot
+     * @param $snapshot
      *
      * @return $this
      */

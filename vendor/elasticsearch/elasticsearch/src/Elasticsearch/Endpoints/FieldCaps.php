@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints;
 
 use Elasticsearch\Common\Exceptions\InvalidArgumentException;
@@ -41,7 +39,7 @@ class FieldCaps extends AbstractEndpoint
     {
         $index = $this->index;
 
-        if (isset($index) === true) {
+        if (isset($index) === true ) {
             return "/$index/_field_caps";
         } else {
             return "/_field_caps";

@@ -1,4 +1,1 @@
-#!/usr/bin/env bash
-
-curl -O http://get.sensiolabs.org/sami.phar
-php sami.phar update --force -v util/docsConfig.php
+php vendor/sami/sami/sami.php update util/DocsConfig.php

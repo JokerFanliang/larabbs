@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Snapshot;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -18,22 +16,14 @@ use Elasticsearch\Common\Exceptions;
  */
 class Status extends AbstractEndpoint
 {
-    /**
-     * A comma-separated list of repository names
-     *
-     * @var string
-     */
+    // A comma-separated list of repository names
     private $repository;
 
-    /**
-     * A comma-separated list of snapshot names
-     *
-     * @var string
-     */
+    // A comma-separated list of snapshot names
     private $snapshot;
 
     /**
-     * @param string $repository
+     * @param $repository
      *
      * @return $this
      */
@@ -49,7 +39,7 @@ class Status extends AbstractEndpoint
     }
 
     /**
-     * @param string $snapshot
+     * @param $snapshot
      *
      * @return $this
      */

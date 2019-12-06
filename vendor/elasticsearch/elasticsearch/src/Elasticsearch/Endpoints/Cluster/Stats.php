@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Cluster;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -17,17 +15,11 @@ use Elasticsearch\Endpoints\AbstractEndpoint;
  */
 class Stats extends AbstractEndpoint
 {
-    /**
-     * A comma-separated list of node IDs or names to limit the returned information;
-     * use `_local` to return information from the node you're connecting to,
-     * leave empty to get information from all nodes
-     *
-     * @var string
-     */
+    // A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you&#039;re connecting to, leave empty to get information from all nodes
     private $nodeID;
 
     /**
-     * @param string $node_id
+     * @param $node_id
      *
      * @return $this
      */

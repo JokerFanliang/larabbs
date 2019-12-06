@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints;
 
 use Elasticsearch\Common\Exceptions;
@@ -64,9 +62,6 @@ class Delete extends AbstractEndpoint
             'timeout',
             'version',
             'version_type',
-            'include_type_name',
-            'if_primary_term',
-            'if_seq_no'
         );
     }
 

@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints;
 
-use Elasticsearch\Common\Exceptions\InvalidArgumentException;
 use Elasticsearch\Serializers\SerializerInterface;
+use Elasticsearch\Transport;
 
 /**
  * Class Bulk
@@ -41,13 +39,8 @@ class Bulk extends AbstractEndpoint implements BulkEndpointInterface
             foreach ($body as $item) {
                 $this->body .= $this->serializer->serialize($item) . "\n";
             }
-        } elseif (is_string($body)) {
-            $this->body = $body;
-            if (substr($body, -1) != "\n") {
-                $this->body .= "\n";
-            }
         } else {
-            throw new InvalidArgumentException("Bulk body must be an array, traversable object or string");
+            $this->body = $body;
         }
 
         return $this;
@@ -75,11 +68,8 @@ class Bulk extends AbstractEndpoint implements BulkEndpointInterface
             'pipeline',
             '_source',
             '_source_include',
-            '_source_includes',
             '_source_exclude',
-            '_source_excludes',
-            'pipeline',
-            'seq_no_primary_term'
+            'pipeline'
         );
     }
 

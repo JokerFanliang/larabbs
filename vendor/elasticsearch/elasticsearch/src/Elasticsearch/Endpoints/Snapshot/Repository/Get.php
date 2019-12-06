@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Snapshot\Repository;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -17,15 +15,11 @@ use Elasticsearch\Endpoints\AbstractEndpoint;
  */
 class Get extends AbstractEndpoint
 {
-    /**
-     * A comma-separated list of repository names
-     *
-     * @var string
-     */
+    // A comma-separated list of repository names
     private $repository;
 
     /**
-     * @param string $repository
+     * @param $repository
      *
      * @return $this
      */

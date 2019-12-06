@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints;
 
 use Elasticsearch\Common\Exceptions;
@@ -65,10 +63,8 @@ class Mget extends AbstractEndpoint
             'realtime',
             'refresh',
             '_source',
-            '_source_include',
-            '_source_includes',
             '_source_exclude',
-            '_source_excludes',
+            '_source_include',
             'routing',
             'stored_fields'
         );
@@ -92,6 +88,6 @@ class Mget extends AbstractEndpoint
      */
     public function getMethod()
     {
-        return 'POST';
+        return isset($this->body) ? 'POST' : 'GET';
     }
 }

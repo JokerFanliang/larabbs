@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Cluster;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -47,8 +45,7 @@ class Health extends AbstractEndpoint
             'wait_for_relocating_shards',
             'wait_for_status',
             'wait_for_events',
-            'wait_for_no_relocating_shards',
-            'wait_for_no_initializing_shards',
+            'wait_for_no_relocating_shards'
         );
     }
 

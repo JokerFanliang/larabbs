@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Template;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Script;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -18,6 +16,25 @@ use Elasticsearch\Common\Exceptions;
  */
 class Put extends AbstractEndpoint
 {
+    /** @var  String */
+    private $lang;
+
+    /**
+     * @param $lang
+     *
+     * @return $this
+     */
+    public function setLang($lang)
+    {
+        if (isset($lang) !== true) {
+            return $this;
+        }
+
+        $this->lang = $lang;
+
+        return $this;
+    }
+
     /**
      * @param array $body
      *
@@ -40,13 +57,19 @@ class Put extends AbstractEndpoint
      */
     public function getURI()
     {
+        if (isset($this->lang) !== true) {
+            throw new Exceptions\RuntimeException(
+                'lang is required for Put'
+            );
+        }
         if (isset($this->id) !== true) {
             throw new Exceptions\RuntimeException(
                 'id is required for put'
             );
         }
         $id   = $this->id;
-        $uri  = "/_scripts/$id";
+        $lang = $this->lang;
+        $uri  = "/_scripts/$lang/$id";
 
         return $uri;
     }

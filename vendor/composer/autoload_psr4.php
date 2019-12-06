@@ -38,6 +38,7 @@ return array(
     'Spatie\\TemporaryDirectory\\' => array($vendorDir . '/spatie/temporary-directory/src'),
     'Spatie\\DbDumper\\' => array($vendorDir . '/spatie/db-dumper/src'),
     'Spatie\\Backup\\' => array($vendorDir . '/spatie/laravel-backup/src'),
+    'ScoutEngines\\Elasticsearch\\' => array($vendorDir . '/tamayo/laravel-scout-elastic/src'),
     'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'QL\\' => array($vendorDir . '/jaeger/querylist/src'),
@@ -84,6 +85,5 @@ return array(
     'Cache\\Adapter\\Filesystem\\' => array($vendorDir . '/cache/filesystem-adapter'),
     'Cache\\Adapter\\Common\\' => array($vendorDir . '/cache/adapter-common'),
     'BeyondCode\\DumpServer\\' => array($vendorDir . '/beyondcode/laravel-dump-server/src'),
-    'Baijunyao\\LaravelScoutElasticsearch\\' => array($vendorDir . '/baijunyao/laravel-scout-elasticsearch/src'),
     'App\\' => array($baseDir . '/app'),
 );

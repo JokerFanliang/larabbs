@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices\Mapping;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -48,7 +46,6 @@ class Get extends AbstractEndpoint
             'expand_wildcards',
             'wildcard_expansion',
             'local',
-            'include_type_name'
         );
     }
 

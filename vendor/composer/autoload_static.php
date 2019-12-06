@@ -136,6 +136,7 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
             'Spatie\\TemporaryDirectory\\' => 26,
             'Spatie\\DbDumper\\' => 16,
             'Spatie\\Backup\\' => 14,
+            'ScoutEngines\\Elasticsearch\\' => 27,
         ),
         'R' => 
         array (
@@ -227,7 +228,6 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'B' => 
         array (
             'BeyondCode\\DumpServer\\' => 22,
-            'Baijunyao\\LaravelScoutElasticsearch\\' => 36,
         ),
         'A' => 
         array (
@@ -365,6 +365,10 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'Spatie\\Backup\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-backup/src',
+        ),
+        'ScoutEngines\\Elasticsearch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tamayo/laravel-scout-elastic/src',
         ),
         'React\\Promise\\' => 
         array (
@@ -550,10 +554,6 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         array (
             0 => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src',
         ),
-        'Baijunyao\\LaravelScoutElasticsearch\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/baijunyao/laravel-scout-elasticsearch/src',
-        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -666,9 +666,6 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'BaconQrCode\\Renderer\\Text\\Html' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Html.php',
         'BaconQrCode\\Renderer\\Text\\Plain' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Plain.php',
         'BaconQrCode\\Writer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Writer.php',
-        'Baijunyao\\LaravelScoutElasticsearch\\ElasticsearchClientTrait' => __DIR__ . '/..' . '/baijunyao/laravel-scout-elasticsearch/src/ElasticsearchClientTrait.php',
-        'Baijunyao\\LaravelScoutElasticsearch\\ElasticsearchServiceProvider' => __DIR__ . '/..' . '/baijunyao/laravel-scout-elasticsearch/src/ElasticsearchServiceProvider.php',
-        'Baijunyao\\LaravelScoutElasticsearch\\Engine\\ElasticsearchEngine' => __DIR__ . '/..' . '/baijunyao/laravel-scout-elasticsearch/src/Engine/ElasticsearchEngine.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
@@ -884,7 +881,6 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'Elasticsearch\\Common\\Exceptions\\Serializer\\JsonErrorException' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Common/Exceptions/Serializer/JsonErrorException.php',
         'Elasticsearch\\Common\\Exceptions\\ServerErrorResponseException' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Common/Exceptions/ServerErrorResponseException.php',
         'Elasticsearch\\Common\\Exceptions\\TransportException' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Common/Exceptions/TransportException.php',
-        'Elasticsearch\\Common\\Exceptions\\Unauthorized401Exception' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Common/Exceptions/Unauthorized401Exception.php',
         'Elasticsearch\\Common\\Exceptions\\UnexpectedValueException' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Common/Exceptions/UnexpectedValueException.php',
         'Elasticsearch\\ConnectionPool\\AbstractConnectionPool' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/ConnectionPool/AbstractConnectionPool.php',
         'Elasticsearch\\ConnectionPool\\ConnectionPoolInterface' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/ConnectionPool/ConnectionPoolInterface.php',
@@ -929,10 +925,9 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'Elasticsearch\\Endpoints\\Cluster\\Nodes\\AbstractNodesEndpoint' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/Nodes/AbstractNodesEndpoint.php',
         'Elasticsearch\\Endpoints\\Cluster\\Nodes\\HotThreads' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/Nodes/HotThreads.php',
         'Elasticsearch\\Endpoints\\Cluster\\Nodes\\Info' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/Nodes/Info.php',
-        'Elasticsearch\\Endpoints\\Cluster\\Nodes\\ReloadSecureSettings' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/Nodes/ReloadSecureSettings.php',
+        'Elasticsearch\\Endpoints\\Cluster\\Nodes\\Shutdown' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/Nodes/Shutdown.php',
         'Elasticsearch\\Endpoints\\Cluster\\Nodes\\Stats' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/Nodes/Stats.php',
         'Elasticsearch\\Endpoints\\Cluster\\PendingTasks' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/PendingTasks.php',
-        'Elasticsearch\\Endpoints\\Cluster\\RemoteInfo' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/RemoteInfo.php',
         'Elasticsearch\\Endpoints\\Cluster\\Reroute' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/Reroute.php',
         'Elasticsearch\\Endpoints\\Cluster\\Settings\\Get' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/Settings/Get.php',
         'Elasticsearch\\Endpoints\\Cluster\\Settings\\Put' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Cluster/Settings/Put.php',
@@ -954,6 +949,7 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'Elasticsearch\\Endpoints\\Indices\\Alias\\Exists' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Alias/Exists.php',
         'Elasticsearch\\Endpoints\\Indices\\Alias\\Get' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Alias/Get.php',
         'Elasticsearch\\Endpoints\\Indices\\Alias\\Put' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Alias/Put.php',
+        'Elasticsearch\\Endpoints\\Indices\\Aliases\\Get' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Aliases/Get.php',
         'Elasticsearch\\Endpoints\\Indices\\Aliases\\Update' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Aliases/Update.php',
         'Elasticsearch\\Endpoints\\Indices\\Analyze' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Analyze.php',
         'Elasticsearch\\Endpoints\\Indices\\Cache\\Clear' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Cache/Clear.php',
@@ -983,7 +979,6 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'Elasticsearch\\Endpoints\\Indices\\ShardStores' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/ShardStores.php',
         'Elasticsearch\\Endpoints\\Indices\\Shrink' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Shrink.php',
         'Elasticsearch\\Endpoints\\Indices\\Snapshotindex' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Snapshotindex.php',
-        'Elasticsearch\\Endpoints\\Indices\\Split' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Split.php',
         'Elasticsearch\\Endpoints\\Indices\\Stats' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Stats.php',
         'Elasticsearch\\Endpoints\\Indices\\Status' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Status.php',
         'Elasticsearch\\Endpoints\\Indices\\Template\\AbstractTemplateEndpoint' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Indices/Template/AbstractTemplateEndpoint.php',
@@ -999,7 +994,6 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'Elasticsearch\\Endpoints\\Info' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Info.php',
         'Elasticsearch\\Endpoints\\Ingest\\Pipeline\\Delete' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Ingest/Pipeline/Delete.php',
         'Elasticsearch\\Endpoints\\Ingest\\Pipeline\\Get' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Ingest/Pipeline/Get.php',
-        'Elasticsearch\\Endpoints\\Ingest\\Pipeline\\ProcessorGrok' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Ingest/Pipeline/ProcessorGrok.php',
         'Elasticsearch\\Endpoints\\Ingest\\Pipeline\\Put' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Ingest/Pipeline/Put.php',
         'Elasticsearch\\Endpoints\\Ingest\\Simulate' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Ingest/Simulate.php',
         'Elasticsearch\\Endpoints\\MPercolate' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/MPercolate.php',
@@ -1009,14 +1003,12 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'Elasticsearch\\Endpoints\\MsearchTemplate' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/MsearchTemplate.php',
         'Elasticsearch\\Endpoints\\Percolate' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Percolate.php',
         'Elasticsearch\\Endpoints\\Ping' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Ping.php',
-        'Elasticsearch\\Endpoints\\RankEval' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/RankEval.php',
         'Elasticsearch\\Endpoints\\Reindex' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Reindex.php',
         'Elasticsearch\\Endpoints\\Remote\\Info' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Remote/Info.php',
         'Elasticsearch\\Endpoints\\RenderSearchTemplate' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/RenderSearchTemplate.php',
         'Elasticsearch\\Endpoints\\Script\\Delete' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Script/Delete.php',
         'Elasticsearch\\Endpoints\\Script\\Get' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Script/Get.php',
         'Elasticsearch\\Endpoints\\Script\\Put' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Script/Put.php',
-        'Elasticsearch\\Endpoints\\ScriptsPainlessExecute' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/ScriptsPainlessExecute.php',
         'Elasticsearch\\Endpoints\\Scroll' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Scroll.php',
         'Elasticsearch\\Endpoints\\Search' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Search.php',
         'Elasticsearch\\Endpoints\\SearchShards' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/SearchShards.php',
@@ -1031,11 +1023,13 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'Elasticsearch\\Endpoints\\Snapshot\\Restore' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Snapshot/Restore.php',
         'Elasticsearch\\Endpoints\\Snapshot\\Status' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Snapshot/Status.php',
         'Elasticsearch\\Endpoints\\Source\\Get' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Source/Get.php',
+        'Elasticsearch\\Endpoints\\Suggest' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Suggest.php',
         'Elasticsearch\\Endpoints\\Tasks\\Cancel' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Tasks/Cancel.php',
         'Elasticsearch\\Endpoints\\Tasks\\Get' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Tasks/Get.php',
         'Elasticsearch\\Endpoints\\Tasks\\TasksList' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Tasks/TasksList.php',
         'Elasticsearch\\Endpoints\\Template\\Delete' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Template/Delete.php',
         'Elasticsearch\\Endpoints\\Template\\Get' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Template/Get.php',
+        'Elasticsearch\\Endpoints\\Template\\Put' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Template/Put.php',
         'Elasticsearch\\Endpoints\\TermVectors' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/TermVectors.php',
         'Elasticsearch\\Endpoints\\Update' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/Update.php',
         'Elasticsearch\\Endpoints\\UpdateByQuery' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch/Endpoints/UpdateByQuery.php',
@@ -4418,6 +4412,8 @@ class ComposerStaticInit3fa7d14033194a33142e0c06b96947e2
         'React\\Promise\\PromisorInterface' => __DIR__ . '/..' . '/react/promise/src/PromisorInterface.php',
         'React\\Promise\\RejectedPromise' => __DIR__ . '/..' . '/react/promise/src/RejectedPromise.php',
         'React\\Promise\\UnhandledRejectionException' => __DIR__ . '/..' . '/react/promise/src/UnhandledRejectionException.php',
+        'ScoutEngines\\Elasticsearch\\ElasticsearchEngine' => __DIR__ . '/..' . '/tamayo/laravel-scout-elastic/src/ElasticsearchEngine.php',
+        'ScoutEngines\\Elasticsearch\\ElasticsearchProvider' => __DIR__ . '/..' . '/tamayo/laravel-scout-elastic/src/ElasticsearchProvider.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',

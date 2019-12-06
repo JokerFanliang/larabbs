@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Serializers;
 
 /**
@@ -18,7 +16,7 @@ interface SerializerInterface
     /**
      * Serialize a complex data-structure into a json encoded string
      *
-     * @param mixed $data The data to encode
+     * @param mixed   The data to encode
      *
      * @return string
      */

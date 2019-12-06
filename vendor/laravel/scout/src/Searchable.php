@@ -2,9 +2,11 @@
 
 namespace Laravel\Scout;
 
+use Laravel\Scout\Builder;
+use Laravel\Scout\Jobs\MakeSearchable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection as BaseCollection;
-use Laravel\Scout\Jobs\MakeSearchable;
 
 trait Searchable
 {
@@ -97,17 +99,14 @@ trait Searchable
      * Perform a search against the model's indexed data.
      *
      * @param  string  $query
-     * @param  \Closure  $callback
+     * @param  Closure  $callback
      * @return \Laravel\Scout\Builder
      */
-    public static function search($query = '', $callback = null)
+    public static function search($query, $callback = null)
     {
-        return app(Builder::class, [
-            'model' => new static,
-            'query' => $query,
-            'callback' => $callback,
-            'softDelete'=> static::usesSoftDelete() && config('scout.soft_delete', false),
-        ]);
+        return new Builder(
+            new static, $query, $callback, config('scout.soft_delete', false)
+        );
     }
 
     /**
@@ -117,12 +116,13 @@ trait Searchable
      */
     public static function makeAllSearchable()
     {
-        $self = new static;
+        $self = new static();
 
-        $softDelete = static::usesSoftDelete() && config('scout.soft_delete', false);
+        $softDeletes = in_array(SoftDeletes::class, class_uses_recursive(get_called_class())) &&
+                       config('scout.soft_delete', false);
 
         $self->newQuery()
-            ->when($softDelete, function ($query) {
+            ->when($softDeletes, function ($query) {
                 $query->withTrashed();
             })
             ->orderBy($self->getKeyName())
@@ -136,7 +136,7 @@ trait Searchable
      */
     public function searchable()
     {
-        $this->newCollection([$this])->searchable();
+        Collection::make([$this])->searchable();
     }
 
     /**
@@ -146,9 +146,11 @@ trait Searchable
      */
     public static function removeAllFromSearch()
     {
-        $self = new static;
+        $self = new static();
 
-        $self->searchableUsing()->flush($self);
+        $self->newQuery()
+            ->orderBy($self->getKeyName())
+            ->unsearchable();
     }
 
     /**
@@ -158,11 +160,11 @@ trait Searchable
      */
     public function unsearchable()
     {
-        $this->newCollection([$this])->unsearchable();
+        Collection::make([$this])->unsearchable();
     }
 
     /**
-     * Get the requested models from an array of object IDs.
+     * Get the requested models from an array of object IDs;
      *
      * @param  \Laravel\Scout\Builder  $builder
      * @param  array  $ids
@@ -170,8 +172,8 @@ trait Searchable
      */
     public function getScoutModelsByIds(Builder $builder, array $ids)
     {
-        $query = static::usesSoftDelete()
-            ? $this->withTrashed() : $this->newQuery();
+        $query = in_array(SoftDeletes::class, class_uses_recursive($this))
+                        ? $this->withTrashed() : $this->newQuery();
 
         if ($builder->queryCallback) {
             call_user_func($builder->queryCallback, $query);
@@ -260,9 +262,9 @@ trait Searchable
     }
 
     /**
-     * Get the queue that should be used with syncing.
+     * Get the queue that should be used with syncing
      *
-     * @return string
+     * @return  string
      */
     public function syncWithSearchUsingQueue()
     {
@@ -294,7 +296,7 @@ trait Searchable
      *
      * @param  string  $key
      * @param  mixed  $value
-     * @return $this
+     * @return void
      */
     public function withScoutMetadata($key, $value)
     {
@@ -321,15 +323,5 @@ trait Searchable
     public function getScoutKeyName()
     {
         return $this->getQualifiedKeyName();
-    }
-
-    /**
-     * Determine if the current class should use soft deletes with searching.
-     *
-     * @return bool
-     */
-    protected static function usesSoftDelete()
-    {
-        return in_array(SoftDeletes::class, class_uses_recursive(get_called_class()));
     }
 }

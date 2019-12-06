@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices\Settings;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -17,15 +15,11 @@ use Elasticsearch\Endpoints\AbstractEndpoint;
  */
 class Get extends AbstractEndpoint
 {
-    /**
-     * The name of the settings that should be included
-     *
-     * @var string
-     */
+    // The name of the settings that should be included
     private $name;
 
     /**
-     * @param string $name
+     * @param $name
      *
      * @return $this
      */

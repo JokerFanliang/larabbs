@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Namespaces;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -21,14 +19,14 @@ abstract class AbstractNamespace
     /** @var \Elasticsearch\Transport  */
     protected $transport;
 
-    /** @var callable */
+    /** @var  callback */
     protected $endpoints;
 
     /**
      * Abstract constructor
      *
      * @param Transport $transport Transport object
-     * @param callable $endpoints
+     * @param $endpoints
      */
     public function __construct($transport, $endpoints)
     {
@@ -59,7 +57,7 @@ abstract class AbstractNamespace
     }
 
     /**
-     * @param AbstractEndpoint $endpoint
+     * @param $endpoint AbstractEndpoint
      *
      * @throws \Exception
      * @return array

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices\Validate;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;

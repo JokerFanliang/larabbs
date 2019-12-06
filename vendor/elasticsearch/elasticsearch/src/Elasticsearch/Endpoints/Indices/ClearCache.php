@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -59,6 +57,6 @@ class ClearCache extends AbstractEndpoint
      */
     public function getMethod()
     {
-        return isset($this->body) ? 'POST' : 'GET';
+        return 'GET';
     }
 }

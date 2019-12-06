@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints;
 
 use Elasticsearch\Common\Exceptions;
@@ -80,9 +78,6 @@ class Msearch extends AbstractEndpoint
         return array(
             'search_type',
             'typed_keys',
-            'max_concurrent_shard_requests',
-            'max_concurrent_searches',
-            'rest_total_hits_as_int'
         );
     }
 
@@ -104,6 +99,6 @@ class Msearch extends AbstractEndpoint
      */
     public function getMethod()
     {
-        return isset($this->body) ? 'POST' : 'GET';
+        return 'POST';
     }
 }

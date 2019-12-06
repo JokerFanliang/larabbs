@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Connections;
 
 use Elasticsearch\Serializers\SerializerInterface;
@@ -51,7 +49,7 @@ class ConnectionFactory implements ConnectionFactoryInterface
         $this->serializer       = $serializer;
     }
     /**
-     * @param array $hostDetails
+     * @param $hostDetails
      *
      * @return ConnectionInterface
      */

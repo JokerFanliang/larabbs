@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch;
 
 use Elasticsearch\Common\Exceptions\InvalidArgumentException;
@@ -39,7 +37,7 @@ class ClientBuilder
     /** @var Transport */
     private $transport;
 
-    /** @var callable */
+    /** @var callback */
     private $endpoint;
 
     /** @var NamespaceBuilderInterface[] */
@@ -91,6 +89,9 @@ class ClientBuilder
     /** @var null|bool|string */
     private $sslVerification = null;
 
+    /** @var bool  */
+    private $allowBadJSON = false;
+
     /**
      * @return ClientBuilder
      */
@@ -101,7 +102,7 @@ class ClientBuilder
 
     /**
      * Can supply first parm to Client::__construct() when invoking manually or with dependency injection
-     * @return Transport
+     * @return this->ransport
      *
      */
     public function getTransport()
@@ -111,7 +112,7 @@ class ClientBuilder
 
     /**
      * Can supply second parm to Client::__construct() when invoking manually or with dependency injection
-     * @return callable
+     * @return this->endpoint
      *
      */
     public function getEndpoint()
@@ -121,7 +122,7 @@ class ClientBuilder
 
     /**
      * Can supply third parm to Client::__construct() when invoking manually or with dependency injection
-     * @return NamespaceBuilderInterface[]
+     * @return this->registeredNamespacesBuilders
      *
      */
     public function getRegisteredNamespacesBuilders()
@@ -164,8 +165,8 @@ class ClientBuilder
     }
 
     /**
-     * @param array $multiParams
      * @param array $singleParams
+     * @param array $multiParams
      * @throws \RuntimeException
      * @return callable
      */
@@ -212,6 +213,19 @@ class ClientBuilder
         } else {
             throw new \RuntimeException('CurlSingle handler requires cURL.');
         }
+    }
+
+    /**
+     * @param $path string
+     * @return \Monolog\Logger\Logger
+     */
+    public static function defaultLogger($path, $level = Logger::WARNING)
+    {
+        $log       = new Logger('log');
+        $handler   = new StreamHandler($path, $level);
+        $log->pushHandler($handler);
+
+        return $log;
     }
 
     /**
@@ -295,10 +309,6 @@ class ClientBuilder
      */
     public function setLogger($logger)
     {
-        if (!$logger instanceof LoggerInterface) {
-            throw new InvalidArgumentException('$logger must implement \Psr\Log\LoggerInterface!');
-        }
-
         $this->logger = $logger;
 
         return $this;
@@ -310,10 +320,6 @@ class ClientBuilder
      */
     public function setTracer($tracer)
     {
-        if (!$tracer instanceof LoggerInterface) {
-            throw new InvalidArgumentException('$tracer must implement \Psr\Log\LoggerInterface!');
-        }
-
         $this->tracer = $tracer;
 
         return $this;
@@ -388,7 +394,7 @@ class ClientBuilder
     }
 
     /**
-     * @param string $cert The name of a file containing a PEM formatted certificate.
+     * @param $cert
      * @param null|string $password
      * @return $this
      */
@@ -400,7 +406,7 @@ class ClientBuilder
     }
 
     /**
-     * @param string $key The name of a file containing a private SSL key.
+     * @param $key
      * @param null|string $password
      * @return $this
      */
@@ -422,11 +428,24 @@ class ClientBuilder
         return $this;
     }
 
+    public function allowBadJSONSerialization()
+    {
+        $this->allowBadJSON = true;
+        return $this;
+    }
+
     /**
      * @return Client
      */
     public function build()
     {
+        if(!defined('JSON_PRESERVE_ZERO_FRACTION') && $this->allowBadJSON === false) {
+            throw new RuntimeException("Your version of PHP / json-ext does not support the constant 'JSON_PRESERVE_ZERO_FRACTION',".
+            " which is important for proper type mapping in Elasticsearch. Please upgrade your PHP or json-ext.\n".
+            "If you are unable to upgrade, and are willing to accept the consequences, you may use the allowBadJSONSerialization()".
+            " method on the ClientBuilder to bypass this limitation.");
+        }
+
         $this->buildLoggers();
 
         if (is_null($this->handler)) {
@@ -516,7 +535,7 @@ class ClientBuilder
 
         $registeredNamespaces = [];
         foreach ($this->registeredNamespacesBuilders as $builder) {
-            /** @var NamespaceBuilderInterface $builder */
+            /** @var $builder NamespaceBuilderInterface */
             $registeredNamespaces[$builder->getName()] = $builder->getObject($this->transport, $this->serializer);
         }
 
@@ -554,15 +573,13 @@ class ClientBuilder
                 $connections,
                 $this->selector,
                 $this->connectionFactory,
-                $this->connectionPoolArgs
-            );
+                $this->connectionPoolArgs);
         } elseif (is_null($this->connectionPool)) {
             $this->connectionPool = new StaticNoPingConnectionPool(
                 $connections,
                 $this->selector,
                 $this->connectionFactory,
-                $this->connectionPoolArgs
-            );
+                $this->connectionPoolArgs);
         }
 
         if (is_null($this->retries)) {
@@ -611,7 +628,7 @@ class ClientBuilder
             if (is_string($host)) {
                 $host = $this->prependMissingScheme($host);
                 $host = $this->extractURIParts($host);
-            } elseif (is_array($host)) {
+            } else if (is_array($host)) {
                 $host = $this->normalizeExtendedHost($host);
             } else {
                 $this->logger->error("Could not parse host: ".print_r($host, true));
@@ -624,11 +641,10 @@ class ClientBuilder
     }
 
     /**
-     * @param array $host
+     * @param $host
      * @return array
      */
-    private function normalizeExtendedHost(array $host)
-    {
+    private function normalizeExtendedHost($host) {
         if (isset($host['host']) === false) {
             $this->logger->error("Required 'host' was not defined in extended format: ".print_r($host, true));
             throw new RuntimeException("Required 'host' was not defined in extended format: ".print_r($host, true));

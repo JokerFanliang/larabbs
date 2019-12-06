@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 error_reporting(E_ALL | E_STRICT);
 
 // Set the default timezone. While this doesn't cause any tests to fail, PHP
@@ -19,12 +17,6 @@ echo "Base directory: ". dirname(__DIR__)."\n";
 // Include the composer autoloader
 $autoloader = require_once(dirname(__DIR__) . '/vendor/autoload.php');
 
-$client = \Elasticsearch\ClientBuilder::fromConfig([
-	'hosts' => [$_SERVER['ES_TEST_HOST']]
-]);
-$serverInfo = $client->info();
-var_dump($serverInfo);
-
 $gitWrapper = new \GitWrapper\GitWrapper();
 echo "Git cwd: ".dirname(__DIR__) . "/util/elasticsearch\n";
 $git = $gitWrapper->workingCopy(dirname(__DIR__) . '/util/elasticsearch');
@@ -32,6 +24,6 @@ $git = $gitWrapper->workingCopy(dirname(__DIR__) . '/util/elasticsearch');
 echo "Update elasticsearch submodule\n";
 $git->fetchAll(array('verbose' => true));
 
-$hash = $serverInfo['version']['build_hash'];
+$hash = $_SERVER['TEST_BUILD_REF'];
 echo "Checkout yaml tests (hash: $hash)\n";
 $git->checkout($hash, array('force' => true, 'quiet' => true));

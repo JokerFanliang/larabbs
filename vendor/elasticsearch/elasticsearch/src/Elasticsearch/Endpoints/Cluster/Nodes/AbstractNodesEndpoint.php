@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Cluster\Nodes;
 
 use Elasticsearch\Common\Exceptions\InvalidArgumentException;
@@ -18,17 +16,11 @@ use Elasticsearch\Endpoints\AbstractEndpoint;
  */
 abstract class AbstractNodesEndpoint extends AbstractEndpoint
 {
-    /**
-     * A comma-separated list of node IDs or names to limit the returned information;
-     * use `_local` to return information from the node you're connecting to,
-     * leave empty to get information from all nodes
-     *
-     * @var string
-     */
+    /** @var  string  A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you&#039;re connecting to, leave empty to get information from all nodes */
     protected $nodeID;
 
     /**
-     * @param string|string[] $nodeID
+     * @param $nodeID
      *
      * @throws \Elasticsearch\Common\Exceptions\InvalidArgumentException
      *

@@ -1,11 +1,5 @@
 <?php
-
-declare(strict_types = 1);
-
-namespace Elasticsearch\Tests\ConnectionPool;
-
 use Elasticsearch\ClientBuilder;
-use Elasticsearch\ConnectionPool\SniffingConnectionPool;
 
 /**
  * Class SniffingConnectionPoolIntegrationTest
@@ -17,7 +11,7 @@ use Elasticsearch\ConnectionPool\SniffingConnectionPool;
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache2
  * @link       http://elasticsearch.org
  */
-class SniffingConnectionPoolIntegrationTest extends \PHPUnit\Framework\TestCase
+class SniffingConnectionPoolIntegrationTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
@@ -27,8 +21,8 @@ class SniffingConnectionPoolIntegrationTest extends \PHPUnit\Framework\TestCase
     public function testSniff()
     {
         $client = ClientBuilder::create()
-            ->setHosts([getenv('ES_TEST_HOST')])
-            ->setConnectionPool(SniffingConnectionPool::class, ['sniffingInterval' => -10])
+            ->setHosts([$_SERVER['ES_TEST_HOST']])
+            ->setConnectionPool('\Elasticsearch\ConnectionPool\SniffingConnectionPool', ['sniffingInterval' => -10])
             ->build();
 
         $pinged = $client->ping();

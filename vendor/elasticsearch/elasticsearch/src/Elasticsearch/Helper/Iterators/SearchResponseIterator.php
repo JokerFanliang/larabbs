@@ -1,10 +1,8 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Helper\Iterators;
 
-use Elasticsearch\Client;
+use ElasticSearch\Client;
 use Iterator;
 
 /**
@@ -46,7 +44,7 @@ class SearchResponseIterator implements Iterator
     private $scroll_id;
 
     /**
-     * @var string duration
+     * @var duration
      */
     private $scroll_ttl;
 
@@ -54,7 +52,7 @@ class SearchResponseIterator implements Iterator
      * Constructor
      *
      * @param Client $client
-     * @param array  $search_params  Associative array of parameters
+     * @param array  $params  Associative array of parameters
      * @see   Client::search()
      */
     public function __construct(Client $client, array $search_params)
@@ -130,11 +128,15 @@ class SearchResponseIterator implements Iterator
      */
     public function next()
     {
-        $this->current_scrolled_response = $this->client->scroll([
-            'scroll_id' => $this->scroll_id,
-            'scroll'    => $this->scroll_ttl
-        ]);
-        $this->scroll_id = $this->current_scrolled_response['_scroll_id'];
+        if ($this->current_key !== 0) {
+            $this->current_scrolled_response = $this->client->scroll(
+                array(
+                    'scroll_id' => $this->scroll_id,
+                    'scroll'    => $this->scroll_ttl
+                )
+            );
+            $this->scroll_id = $this->current_scrolled_response['_scroll_id'];
+        }
         $this->current_key++;
     }
 

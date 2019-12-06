@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Cat;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -17,15 +15,11 @@ use Elasticsearch\Endpoints\AbstractEndpoint;
  */
 class Aliases extends AbstractEndpoint
 {
-    /**
-     * A comma-separated list of alias names to return
-     *
-     * @var string
-     */
+    // A comma-separated list of alias names to return
     private $name;
 
     /**
-     * @param string $name
+     * @param $name
      *
      * @return $this
      */

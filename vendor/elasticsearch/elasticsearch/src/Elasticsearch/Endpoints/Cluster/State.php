@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Cluster;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -17,15 +15,11 @@ use Elasticsearch\Endpoints\AbstractEndpoint;
  */
 class State extends AbstractEndpoint
 {
-    /**
-     * Limit the information returned to the specified metrics
-     *
-     * @var string
-     */
+    // Limit the information returned to the specified metrics
     private $metric;
 
     /**
-     * @param string|string[] $metric
+     * @param $metric
      *
      * @return $this
      */

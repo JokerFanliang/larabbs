@@ -2,9 +2,10 @@
 
 namespace Laravel\Scout;
 
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Traits\Macroable;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Builder
 {
@@ -266,9 +267,9 @@ class Builder
 
         $perPage = $perPage ?: $this->model->getPerPage();
 
-        $results = $this->model->newCollection($engine->map(
+        $results = Collection::make($engine->map(
             $this, $rawResults = $engine->paginate($this, $perPage, $page), $this->model
-        )->all());
+        ));
 
         $paginator = (new LengthAwarePaginator($results, $engine->getTotalCount($rawResults), $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),

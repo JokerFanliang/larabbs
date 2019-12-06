@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices\Field;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -18,15 +16,11 @@ use Elasticsearch\Common\Exceptions;
  */
 class Get extends AbstractEndpoint
 {
-    /**
-     * A comma-separated list of fields
-     *
-     * @var string
-     */
+    // A comma-separated list of fields
     private $field;
 
     /**
-     * @param string $field
+     * @param $field
      *
      * @return $this
      */
@@ -80,7 +74,7 @@ class Get extends AbstractEndpoint
             'ignore_unavailable',
             'allow_no_indices',
             'expand_wildcards',
-            'local'
+            'local',
         );
     }
 

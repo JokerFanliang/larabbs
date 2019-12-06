@@ -3,6 +3,7 @@
 namespace Laravel\Scout\Engines;
 
 use Laravel\Scout\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 abstract class Engine
 {
@@ -67,14 +68,6 @@ abstract class Engine
     abstract public function getTotalCount($results);
 
     /**
-     * Flush all of the model's records from the engine.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return void
-     */
-    abstract public function flush($model);
-
-    /**
      * Get the results of the query as a Collection of primary keys.
      *
      * @param  \Laravel\Scout\Builder  $builder
@@ -93,8 +86,8 @@ abstract class Engine
      */
     public function get(Builder $builder)
     {
-        return $this->map(
+        return Collection::make($this->map(
             $builder, $this->search($builder), $builder->model
-        );
+        ));
     }
 }

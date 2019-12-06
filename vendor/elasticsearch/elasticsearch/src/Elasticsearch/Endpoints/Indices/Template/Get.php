@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices\Template;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -18,15 +16,11 @@ use Elasticsearch\Common\Exceptions;
  */
 class Get extends AbstractEndpoint
 {
-    /**
-     * The name of the template
-     *
-     * @var string
-     */
+    // The name of the template
     private $name;
 
     /**
-     * @param string $name
+     * @param $name
      *
      * @return $this
      */
@@ -65,8 +59,7 @@ class Get extends AbstractEndpoint
         return array(
             'flat_settings',
             'local',
-            'master_timeout',
-            'include_type_name'
+            'master_timeout'
         );
     }
 

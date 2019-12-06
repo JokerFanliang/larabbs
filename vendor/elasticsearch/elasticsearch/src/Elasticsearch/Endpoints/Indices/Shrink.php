@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -19,13 +17,8 @@ use Elasticsearch\Common\Exceptions;
  */
 class Shrink extends AbstractEndpoint
 {
-    /**
-     * The name of the target index to shrink into
-     *
-     * @var string
-     */
+    // The name of the target index to shrink into
     private $target;
-
     /**
      * @param array $body
      *
@@ -45,7 +38,7 @@ class Shrink extends AbstractEndpoint
     }
 
     /**
-     * @param string $target
+     * @param $target
      *
      * @return $this
      */

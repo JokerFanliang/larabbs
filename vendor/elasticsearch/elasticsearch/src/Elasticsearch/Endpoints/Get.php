@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints;
 
 use Elasticsearch\Common\Exceptions;
@@ -93,14 +91,11 @@ class Get extends AbstractEndpoint
             'refresh',
             'routing',
             '_source',
-            '_source_include',
-            '_source_includes',
             '_source_exclude',
-            '_source_excludes',
+            '_source_include',
             'version',
             'version_type',
-            'stored_fields',
-            'include_type_name'
+            'stored_fields'
         );
     }
 

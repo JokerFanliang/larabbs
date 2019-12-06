@@ -1,11 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace Elasticsearch\Tests\ConnectionPool;
-
-use Elasticsearch;
-
 /**
  * Class StaticConnectionPoolIntegrationTest
  *
@@ -16,22 +10,12 @@ use Elasticsearch;
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache2
  * @link       http://elasticsearch.org
  */
-class StaticConnectionPoolIntegrationTest extends \PHPUnit\Framework\TestCase
+class StaticConnectionPoolIntegrationTest extends \PHPUnit_Framework_TestCase
 {
-    public function setUp()
-    {
-        if (empty(getenv('ES_TEST_HOST'))) {
-            $this->markTestSkipped(
-                'Elasticsearch is not configured. Check the ES_TEST_HOST env in your phpunit.xml file.'
-            );
-        }
-    }
-
     // Issue #636
-    public function test404Liveness()
-    {
+    public function test404Liveness() {
         $client = \Elasticsearch\ClientBuilder::create()
-            ->setHosts([getenv('ES_TEST_HOST')])
+            ->setHosts([$_SERVER['ES_TEST_HOST']])
             ->setConnectionPool(\Elasticsearch\ConnectionPool\StaticConnectionPool::class)
             ->build();
 

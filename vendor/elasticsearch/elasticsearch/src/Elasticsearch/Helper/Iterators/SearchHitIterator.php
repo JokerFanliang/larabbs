@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Helper\Iterators;
 
 use Iterator;
@@ -130,7 +128,7 @@ class SearchHitIterator implements Iterator, \Countable
      */
     public function key()
     {
-        return $this->current_key;
+        return $this->current_hit_index;
     }
 
     /**

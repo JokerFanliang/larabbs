@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Source;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -63,10 +61,8 @@ class Get extends AbstractEndpoint
             'refresh',
             'routing',
             '_source',
-            '_source_include',
-            '_source_includes',
             '_source_exclude',
-            '_source_excludes',
+            '_source_include',
             'version',
             'version_type',
         );

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices\Mapping;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -67,8 +65,7 @@ class GetField extends AbstractEndpoint
             'ignore_unavailable',
             'allow_no_indices',
             'expand_wildcards',
-            'local',
-            'include_type_name'
+            'local'
         );
     }
 

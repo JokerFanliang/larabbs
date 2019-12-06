@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Cluster\Nodes;
 
 /**
- * Class ReloadSecureSettings
+ * Class Shutdown
  *
  * @category Elasticsearch
  * @package  Elasticsearch\Endpoints\Cluster\Nodes
@@ -13,18 +11,18 @@ namespace Elasticsearch\Endpoints\Cluster\Nodes;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache2
  * @link     http://elastic.co
  */
-class ReloadSecureSettings extends AbstractNodesEndpoint
+class Shutdown extends AbstractNodesEndpoint
 {
     /**
      * @return string
      */
     public function getURI()
     {
-        $nodeId = $this->nodeID;
-        $uri   = "/_nodes/reload_secure_settings";
+        $node_id = $this->nodeID;
+        $uri   = "/_shutdown";
 
-        if (isset($nodeId) === true) {
-            $uri = "/_nodes/$nodeId/reload_secure_settings";
+        if (isset($node_id) === true) {
+            $uri = "/_cluster/nodes/$node_id/_shutdown";
         }
 
         return $uri;
@@ -35,7 +33,10 @@ class ReloadSecureSettings extends AbstractNodesEndpoint
      */
     public function getParamWhitelist()
     {
-        return [];
+        return array(
+            'delay',
+            'exit',
+        );
     }
 
     /**

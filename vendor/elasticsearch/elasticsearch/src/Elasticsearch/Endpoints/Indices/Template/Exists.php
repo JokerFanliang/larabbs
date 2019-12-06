@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices\Template;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -18,15 +16,11 @@ use Elasticsearch\Common\Exceptions;
  */
 class Exists extends AbstractEndpoint
 {
-    /**
-     * The name of the template
-     *
-     * @var string
-     */
+    // The name of the template
     private $name;
 
     /**
-     * @param string $name
+     * @param $name
      *
      * @return $this
      */

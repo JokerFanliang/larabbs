@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices\Mapping;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -41,21 +39,19 @@ class Put extends AbstractEndpoint
      */
     public function getURI()
     {
-        $index = $this->index ?? null;
-        $type = $this->type ?? null;
-
-        if (null === $index && $type === $index) {
+        if (isset($this->type) !== true) {
             throw new Exceptions\RuntimeException(
-                'type or index are required for Put'
+                'type is required for Put'
             );
         }
-        $uri = '';
-        if (null !== $index) {
-            $uri = "/$index";
-        }
-        $uri .= '/_mapping';
-        if (null !== $type) {
-            $uri .= "/$type";
+        $index = $this->index;
+        $type = $this->type;
+        $uri   = "/_mapping/$type";
+
+        if (isset($index) === true && isset($type) === true) {
+            $uri = "/$index/$type/_mapping";
+        } elseif (isset($type) === true) {
+            $uri = "/_mapping/$type";
         }
 
         return $uri;
@@ -73,8 +69,7 @@ class Put extends AbstractEndpoint
             'ignore_unavailable',
             'allow_no_indices',
             'expand_wildcards',
-            'update_all_types',
-            'include_type_name'
+            'update_all_types'
         );
     }
 

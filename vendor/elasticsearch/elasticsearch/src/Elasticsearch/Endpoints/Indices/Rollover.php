@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -98,7 +96,6 @@ class Rollover extends AbstractEndpoint
             'timeout',
             'master_timeout',
             'wait_for_active_shards',
-            'include_type_name'
         );
     }
 

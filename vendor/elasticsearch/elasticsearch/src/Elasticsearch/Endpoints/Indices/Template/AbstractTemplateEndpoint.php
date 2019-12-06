@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Indices\Template;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -21,7 +19,7 @@ abstract class AbstractTemplateEndpoint extends AbstractEndpoint
     protected $name;
 
     /**
-     * @param string $name
+     * @param $name
      *
      * @return $this
      */

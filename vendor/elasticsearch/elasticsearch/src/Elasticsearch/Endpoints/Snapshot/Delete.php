@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Snapshot;
 
 use Elasticsearch\Endpoints\AbstractEndpoint;
@@ -18,22 +16,14 @@ use Elasticsearch\Common\Exceptions;
  */
 class Delete extends AbstractEndpoint
 {
-    /**
-     * A repository name
-     *
-     * @var string
-     */
+    // A repository name
     private $repository;
 
-    /**
-     * A snapshot name
-     *
-     * @var string
-     */
+    // A snapshot name
     private $snapshot;
 
     /**
-     * @param string $repository
+     * @param $repository
      *
      * @return $this
      */
@@ -49,7 +39,7 @@ class Delete extends AbstractEndpoint
     }
 
     /**
-     * @param string $snapshot
+     * @param $snapshot
      *
      * @return $this
      */

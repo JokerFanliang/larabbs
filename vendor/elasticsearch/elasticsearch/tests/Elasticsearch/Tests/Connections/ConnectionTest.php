@@ -5,6 +5,7 @@ use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use Elasticsearch\Connections\Connection;
 use Elasticsearch\Serializers\SerializerInterface;
+use Elasticsearch\Serializers\SmartSerializer;
 use Psr\Log\LoggerInterface;
 
 class ConnectionTest extends \PHPUnit\Framework\TestCase
@@ -26,15 +27,16 @@ class ConnectionTest extends \PHPUnit\Framework\TestCase
         $host = [
             'host' => 'localhost'
         ];
+
         $connection = new Connection(
-            function () {
-            },
+            function(){},
             $host,
             $params,
             $this->serializer,
             $this->logger,
             $this->trace
         );
+
         $this->assertInstanceOf(Connection::class, $connection);
     }
 
@@ -45,8 +47,7 @@ class ConnectionTest extends \PHPUnit\Framework\TestCase
             'host' => 'localhost'
         ];
         $connection = new Connection(
-            function () {
-            },
+            function(){},
             $host,
             $params,
             $this->serializer,

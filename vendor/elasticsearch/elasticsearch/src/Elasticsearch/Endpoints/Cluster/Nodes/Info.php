@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Elasticsearch\Endpoints\Cluster\Nodes;
 
 /**
@@ -15,15 +13,11 @@ namespace Elasticsearch\Endpoints\Cluster\Nodes;
  */
 class Info extends AbstractNodesEndpoint
 {
-    /**
-     * A comma-separated list of metrics you wish returned. Leave empty to return all.
-     *
-     * @var string
-     */
+    // A comma-separated list of metrics you wish returned. Leave empty to return all.
     private $metric;
 
     /**
-     * @param string|string[] $metric
+     * @param $metric
      *
      * @return $this
      */
