@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Index;
 use Illuminate\Http\Request;
 use App\Models\ArticleType;
 use App\Models\Article;
-use Laravel\Scout\Searchable;
+//use Laravel\Scout\Searchable;
 use App\Http\Controllers\Index\BaseController;
 
 

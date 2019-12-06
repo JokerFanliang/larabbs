@@ -162,9 +162,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        Laravel\Scout\ScoutServiceProvider::class,
+        //Laravel\Scout\ScoutServiceProvider::class,
 
-        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+        //ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
 
         /*
          * Package Service Providers...
