@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ArticleType;
-//use Laravel\Scout\Searchable;
+use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
-	//use Searchable;
+	use Searchable;
     protected $guarded = ['created_at','updated_at'];
 
     public function type()
