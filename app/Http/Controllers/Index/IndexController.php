@@ -14,7 +14,7 @@ class IndexController extends BaseController
 
     public function index(Request $request)
     {
-    	dump(\App\Models\Article::search("5")->get()->toArray());exit;
+    	//dump(\App\Models\Article::search("5")->get()->toArray());exit;
         return view('index.index.index');
     }
 
