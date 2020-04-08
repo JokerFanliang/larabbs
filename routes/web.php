@@ -25,6 +25,7 @@ Route::get('admin/index/index','Admin\IndexController@index');
 //后台文章类别
 Route::get('admin/article_type/index','Admin\ArticleTypeController@index');
 Route::get('admin/article_type/add','Admin\ArticleTypeController@add');
+Route::post('admin/article_type/save','Admin\ArticleTypeController@save');
 Route::get('admin/article_type/edit','Admin\ArticleTypeController@edit');
 
 //后台文章内容

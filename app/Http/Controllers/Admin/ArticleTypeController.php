@@ -28,6 +28,12 @@ class ArticleTypeController extends BackController
         return view('admin.article_type.add');
     }
 
+    public function save(Request $request)
+    { 
+        dump($request->all());exit;
+        return $this->redirect('ArticleType/index');
+    }
+
     //修改
     public function edit(Request $request)
     { 

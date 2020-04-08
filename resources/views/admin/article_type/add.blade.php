@@ -10,16 +10,16 @@
 </nav>
 <div class="Hui-article">
 <article class="page-container">
-	<form class="form form-horizontal" id="form-article-add">
+	<form action="/admin/article_type/save" class="form form-horizontal" id="form-article-add" method="post">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类别：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="name" required>
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+				<button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
 				<a class="btn btn-default radius" type="button" href="/admin/article_type/index">&nbsp;&nbsp;返回&nbsp;&nbsp;</a>
 			</div>
